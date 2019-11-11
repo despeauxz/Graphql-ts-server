@@ -34,6 +34,7 @@
       "database": "graphql_test",
       "synchronize": true,
       "logging": false,
+      "dropSchema": true,
       "entities": [
          "src/entity/**/*.ts"
       ],

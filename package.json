@@ -3,32 +3,51 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
+      "@gql2ts/types": "^1.9.0",
       "@types/bcrypt": "^3.0.0",
+      "@types/faker": "^4.1.7",
+      "@types/glob": "^7.1.1",
+      "@types/ioredis": "^4.0.18",
       "@types/jest": "^24.0.22",
+      "@types/mailgen": "^2.0.2",
       "@types/node": "^8.0.29",
+      "@types/uuid": "^3.4.6",
       "@types/yup": "^0.26.24",
       "jest": "^24.9.0",
       "nodemon": "^1.19.4",
+      "ts-jest": "^24.1.0",
       "ts-node": "^8.4.1",
       "tslint": "^5.20.1",
       "tslint-config-prettier": "^1.18.0",
       "typescript": "3.3.3333"
    },
    "dependencies": {
+      "@gql2ts/from-schema": "^1.10.1",
+      "@sendgrid/mail": "^6.4.0",
       "bcrypt": "^3.0.6",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "faker": "^4.1.0",
+      "glob": "^7.1.6",
+      "graphql": "^14.5.8",
       "graphql-import": "^0.7.1",
       "graphql-request": "^1.8.2",
+      "graphql-tools": "^4.0.6",
       "graphql-yoga": "^1.18.3",
+      "ioredis": "^4.14.1",
+      "mailgen": "^2.0.10",
       "merge-graphql-schemas": "^1.7.3",
       "pg": "^7.3.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.20",
+      "uuid": "^3.3.3",
       "yup": "^0.27.0"
    },
    "scripts": {
       "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
       "test": "NODE_ENV=test jest",
       "test:watch": "NODE_ENV=test jest --watch",
-      "test:coverage": "NODE_ENV=test jest --coverage"
+      "test:coverage": "NODE_ENV=test jest --coverage",
+      "gen:types": "ts-node src/scripts/createTypes.ts"
    }
 }

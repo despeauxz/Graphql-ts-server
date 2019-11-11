@@ -1,0 +1,9 @@
+# import Error from '../shared/Error.graphql'
+
+type Query {
+    bye(name: String): String!
+}
+
+type Mutation {
+    login(email: String!, password: String!): [Error!]
+}

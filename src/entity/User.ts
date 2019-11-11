@@ -1,8 +1,14 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    BaseEntity,
+    BeforeInsert
+} from "typeorm";
+import * as bcrypt from "bcrypt";
 
-@Entity()
+@Entity("users")
 export class User extends BaseEntity {
-
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -15,4 +21,8 @@ export class User extends BaseEntity {
     @Column("boolean", { default: false })
     confirmed: boolean;
 
+    @BeforeInsert()
+    async hashUserPassword() {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
 }

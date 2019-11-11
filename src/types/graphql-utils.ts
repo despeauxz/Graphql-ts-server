@@ -1,4 +1,9 @@
-export interface Context {}
+import { Redis } from "ioredis";
+
+export interface Context {
+    redis: Redis;
+    url: string;
+}
 
 export type Resolver = (
     parent: any,
@@ -9,6 +14,12 @@ export type Resolver = (
 
 export interface ResolversMap {
     [key: string]: {
-        [key: string]: Resolver
+        [key: string]: Resolver;
     };
+}
+
+export interface Mailer {
+    to: string;
+    subject: string;
+    message: string;
 }
