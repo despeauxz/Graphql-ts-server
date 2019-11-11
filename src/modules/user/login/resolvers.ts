@@ -14,7 +14,7 @@ export const resolvers: ResolversMap = {
         bye: (_: any, { name }: any) => `Bye ${name || "Peep"}`
     },
     Mutation: {
-        login: async (_, { email, password }) => {
+        login: async (_, { email, password }, { session }) => {
             const user = await User.findOne({ where: { email } });
 
             if (!user) {
@@ -32,6 +32,8 @@ export const resolvers: ResolversMap = {
             if (!valid) {
                 return errorResponse;
             }
+
+            session.userId = user.id;
 
             return null;
         }
