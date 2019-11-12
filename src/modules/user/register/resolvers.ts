@@ -28,7 +28,6 @@ export const resolvers: ResolversMap = {
             try {
                 await schema.validate(args, { abortEarly: false });
             } catch (error) {
-                console.log(error);
                 return formatYupError(error);
             }
             const { email, password } = args;
@@ -36,7 +35,6 @@ export const resolvers: ResolversMap = {
                 where: { email },
                 select: ["id"]
             });
-            console.log(userAlreadyExists);
 
             if (userAlreadyExists) {
                 return [
