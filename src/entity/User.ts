@@ -12,14 +12,17 @@ export class User extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column("varchar", { length: 255 })
+    @Column("varchar", { length: 255, nullable: true })
     email: string;
 
-    @Column("varchar", { length: 255 })
+    @Column("varchar", { length: 255, nullable: true })
     password: string;
 
     @Column("boolean", { default: false })
     confirmed: boolean;
+
+    @Column("text", { nullable: true })
+    googleId: string | null
 
     @BeforeInsert()
     async hashPasswordBeforeInsert() {

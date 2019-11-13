@@ -4,11 +4,11 @@ export interface Context {
     redis: Redis;
     url: string;
     session: Session;
-    req: Express.Request
+    req: Express.Request;
 }
 
 export interface Session extends Express.Session {
-    userId?: string
+    userId?: string;
 }
 
 export type Resolver = (
@@ -36,4 +36,21 @@ export interface Mailer {
     to: string;
     subject: string;
     message: string;
+}
+
+export interface StrategyOptions {
+    /**
+     * Your Google application's client id.
+     */
+    clientID: string;
+
+    /**
+     * Your Google application's client secret.
+     */
+    clientSecret: string;
+
+    /**
+     * URL to which Google will redirect the user after granting authorization.
+     */
+    callbackURL: string;
 }
