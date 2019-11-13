@@ -14,7 +14,7 @@ export const resolvers: ResolversMap = {
         bye: (_: any, { name }: any) => `Bye ${name || "Peep"}`
     },
     Mutation: {
-        login: async (_, { email, password }, { session }) => {
+        login: async (_, { email, password }, { session, redis, req }) => {
             const user = await User.findOne({ where: { email } });
 
             if (!user) {
@@ -34,6 +34,9 @@ export const resolvers: ResolversMap = {
             }
 
             session.userId = user.id;
+            if (req.sessionID) {
+                await redis.lpush(`userSids:${user.id}`, req.sessionID);
+            }
 
             return null;
         }

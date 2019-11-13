@@ -4,6 +4,7 @@ node_modules/
 build/
 tmp/
 temp/
+dump.rdb
 .DS_Store
 .DS_Store.env
 .env

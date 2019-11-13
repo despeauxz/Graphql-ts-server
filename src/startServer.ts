@@ -19,13 +19,14 @@ export const startServer = async () => {
         context: ({ request }) => ({
             redis,
             url: request.protocol + "://" + request.get("host"),
-            session: request.session
+            session: request.session,
+            req: request
         })
     });
 
     server.express.use(
         session({
-            store: new RedisStore({ client: redis as any }),
+            store: new RedisStore({ client: redis as any, prefix: "sess:" }),
             name: "quid",
             secret: `${SESSION_SECRET}`,
             resave: false,
