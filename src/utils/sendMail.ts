@@ -3,7 +3,7 @@ import * as Mailgen from "mailgen";
 import { Mailer } from "../types/graphql-utils";
 
 const baseUrl = process.env.BASE_URL || "localhost:4000";
-const projectName = process.env.PROJECT_NAME || "Typescipt GraphQL";
+const projectName = process.env.PROJECT_NAME || "Typescript GraphQL";
 const projectEmail = process.env.PROJECT_EMAIL || "noreply@typescript.com";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
@@ -57,3 +57,59 @@ export const sendVerifyMailToken = async (email: string, url: string) => {
         message
     });
 };
+
+export const sendForgotPasswordMail = (email: string, url: string) => {
+    const link = `${url}`;
+    const emailBody = {
+        body: {
+            name,
+            title: `<h1 style="text-align: center; color: #000000"> ${projectName} </h1>`,
+            intro:
+                "You are receiving this email because a password reset request for your account was received.",
+            action: {
+                instructions:
+                    "Tap the button below to reset your customer account password. If you didn't request a new password, you can safely delete this email.",
+                button: {
+                    color: "#335BCF",
+                    text: "Reset Your Password",
+                    link
+                }
+            },
+            outro: `If that doesn't work, copy and paste the following link in your browser:\n\n${link}`
+        }
+    };
+    // Generate an HTML email with the provided contents
+    const message = mailGenerator.generate(emailBody);
+
+    return sendMail({
+        to: email,
+        subject: `${projectName}: Forgot Password`,
+        message
+    });
+};
+
+export const sendResetSuccessMail = (email: string, url: string) => {
+    const emailBody = {
+      body: {
+        name,
+        title: `<h1 style="text-align: center; color: #000000"> ${projectName} </h1>`,
+        intro: 'You are receiving this email because a password reset request for your account was received.',
+        action: {
+          instructions: `Your password has been successfully reset. Please login to ${projectName} by clicking the button below`,
+          button: {
+            color: 'green',
+            text: 'Login',
+            link: `${url}`
+          }
+        }
+      }
+    };
+    // Generate an HTML email with the provided contents
+    const message = mailGenerator.generate(emailBody);
+  
+    return sendMail({
+      to: email,
+      subject: `${projectName}: Reset Success`,
+      message
+    });
+  };

@@ -1,8 +1,8 @@
 type Query {
-    dummy: String
+    dummy2: String
 }
 
 type Mutation {
-    sendForgotPasswordMail(email: String!): Boolean,
+    sendForgotPasswordMail(email: String!): Boolean
     forgotPasswordChange(newPassword: String!, key: String!): Boolean
 }

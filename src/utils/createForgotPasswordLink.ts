@@ -7,6 +7,6 @@ export const createForgotPasswordLink = async (
     redis: Redis
 ) => {
     const id = v4();
-    await redis.set(id, userId, "ex", 60 * 60 * 24);
-    return `${url}/forgot-password/${id}`;
+    await redis.set(`forgot:${id}`, userId, "ex", 60 * 30);
+    return `${url}/forgot_password/${id}`;
 };

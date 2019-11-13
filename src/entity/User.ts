@@ -22,7 +22,7 @@ export class User extends BaseEntity {
     confirmed: boolean;
 
     @BeforeInsert()
-    async hashUserPassword() {
+    async hashPasswordBeforeInsert() {
         this.password = await bcrypt.hash(this.password, 10);
     }
 }
