@@ -56,7 +56,7 @@
         "redis": "^2.8.0",
         "reflect-metadata": "^0.1.10",
         "request-promise": "^4.2.5",
-        "typeorm": "0.2.20",
+        "typeorm": "0.2.25",
         "uuid": "^3.3.3",
         "yup": "^0.27.0"
     },
